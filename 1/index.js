@@ -123,7 +123,7 @@ while(i>=0){
     if(i%2==0)console.log(i);
     i-=1;
 }
-
+*/
 /////////2.   Логические операторы. Условные операторы. Циклы
 //1
 
@@ -157,11 +157,8 @@ switch(str){
         break;
     default: console.log("Unknown");
 }
-*/
+
 //3
-/*год, номер которого кратен 400, — високосный;
-остальные годы, номер которых кратен 100, — невисокосные (например, годы 1700, 1800, 1900, 2100, 2200, 2300);
-остальные годы, номер которых кратен 4, — високосные[5]. */
 var n=Number(prompt("enter the year",""));
 if(!((n % 4) || (!(n % 100) && (n % 400))) == true){
     console.log(n+" a leap year");
@@ -178,9 +175,54 @@ for(i=1;i<=10;i++){
     console.log(n*i);
 }
 
+//5
+i=1;
+let tmp1=0;
+let tmp2=1;
+result=0;
+for(i;i<=15;i++){
+    result=tmp1+tmp2;
+    tmp1=tmp2;
+    tmp2=result;
+    console.log(result);
+}
+
+//6
+n=Number(prompt("enter the number",""));
+let flag=true;
+i=2;
+for(i;i< n/2+1;i++){
+    if(n%i==0){
+        flag=false;
+        break;
+    }
+}
+console.log(flag);
+
+
+//7
+n=Number(prompt("enter the number",""));
+
+i=2;
+
+tmp1=2;
+for(i;i<=n;i++){
+    flag=true;
+    for(let j=2;j<=i/2;j++){
+        if(i%j==0){
+            flag=false;
+            continue;
+        }
+    }
+    if(flag)console.log(i);
+}
+
+
+/////////3. coming soon
 
 
 
 function isInteger(num) {
     return (num ^ 0) === num;
   }
+
