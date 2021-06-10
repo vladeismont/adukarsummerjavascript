@@ -28,19 +28,16 @@ function fact(x){
 
 //3
 //  let str=prompt("enter the song", "");
-var str=10; //let same affect
+var str=10;
 function res(str){
     console.log(typeof str);
 }
-res();  //undefined - why?=======================
+res(str);  //
 const determineFunc = (param) => typeof param;
-console.log("logs==>", determineFunc(10)); //number - why?========================
-//what the difference????????
+console.log("logs==>", determineFunc(10)); //number
 console.log("logs==>", determineFunc("10")); //str
 console.log("logs==>", determineFunc(true));    //bool
-// var y=prompt("enter the type or string",''); = string
-console.log("logs==>", determineFunc(y));
-//3.what the difference????????
+
 
 //4
 function circleLength(r=10){
