@@ -120,7 +120,80 @@ for(let j in arrtemp){
 };
 
 
+//homework
+//1
+function getRandomArray(len){
+    let tmpar=[];
+    for(let i=0;i<len;++i){
+        tmpar[i]=Math.random();
+    }
+    return tmpar;
+}
+let tmpar=[];
+tmpar=getRandomArray(5);
+for(let j in tmpar){
+    console.log(tmpar[j]);
+};
 
+//2 эл больше среднего арифм всех эл
+function averageSum(arr){
+    let sum = 0;
+    for(var i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+let avgSum=averageSum(tmpar);
+console.log("avg sum: "+avgSum);
+for(let j in tmpar){
+    if(tmpar[j]>avgSum)
+    console.log(tmpar[j]);
+};
+//3 find two less elements
+var min = Infinity, secondMin = Infinity; 
+for (var i= 0; i< tmpar.length; i++) {
+    if (tmpar[i]< min) {
+        secondMin = min;
+        min = tmpar[i]; 
+    } else if (tmpar[i]< secondMin) {
+        secondMin = tmpar[i]; 
+    }
+}
+console.log('Smallest number: ' + min);
+console.log('Second smallest number: ' + secondMin);
 
+//4 Удалите из массива все элементы, меньшие 0.3. Сдвиньте все оставшиеся элементы вперёд, а на освободившиеся места вставьте нули.
+let x=0;
+tmpar=getRandomArray(5);
+len=tmpar.length;
+for(let i=0;i<len;i++){
+    if(tmpar[i]<0.8){
+        x=x+1;
+        tmpar.splice(i,1);
+        //console.log("#x = "+x);
+    }
+}
+if(x>0){
+    for(let i=0;i<x;i++){
+        tmpar.unshift(0);
+    }
+}
+for(let j in tmpar){
+    console.log(tmpar[j]);
+};
 
-
+//5 Попарно сложите элементы двух массивов равной длины: первый эл массива 1 с последним эл массива 2, второй эл массива 1 с предпоследним эл массива 2 и так далее. Верните массив с результатами сложения.
+//Решение каждой задачи должно быть оформлено как отдельная функция.
+function arElSum(ar1,ar2){
+    let len1=ar1.length;
+    let res=[];
+    for(let i=0;i<len1;i++){//if ar1.len=ar2.len
+        let x=ar1[i]+ar2[len1-i-1];
+        res.push(x);
+    }
+    return res;
+}
+tmpar=arElSum(getRandomArray(5), getRandomArray(5));
+for(let j in tmpar){
+    console.log(tmpar[j]);
+};
