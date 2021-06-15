@@ -46,53 +46,51 @@ for(let j in ar1){
     console.log(ar1[j]);
 };
 
-//1
-var oldArray = [];
+//1 massive[35]...
+var oldArray1 = [];
 for(let i=1;i<=35;++i){
-    oldArray[i-1]=i;
+    oldArray1[i-1]=i;
 }
-
-var newArray = oldArray.slice(0,10);
-for(let j in newArray){
-    console.log(newArray[j]);
+let elem3035=oldArray1[30]+" "+oldArray1[31]+" "+oldArray1[32]+" "+oldArray1[33]+" "+oldArray1[34];
+oldArray1.splice(30,5,elem3035);
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
-oldArray.splice(0,10); // delete first 10
-for(let j in oldArray){
-    console.log(oldArray[j]);
+var newArray1 = oldArray1.slice(0,10);
+for(let j in newArray1){
+    console.log(newArray1[j]);
 };
-oldArray= oldArray.concat(newArray);
-for(let j in oldArray){
-    console.log(oldArray[j]);
+oldArray1.splice(0,10); // delete first 10
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
-var newArray = oldArray.slice(0,10).reverse(); //copy 11-20 first oldArray elements
-for(let j in newArray){
-    console.log(newArray[j]);
+oldArray1= oldArray1.concat(newArray1);
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
-oldArray.splice(0,10); // delete first 11-20
-for(let j in oldArray){
-    console.log(oldArray[j]);
+newArray1 = oldArray1.slice(0,10).reverse(); //copy 11-20 first oldArray elements
+for(let j in newArray1){
+    console.log(newArray1[j]);
 };
-oldArray=newArray.concat(oldArray); //adding reversed 11-20 to the start
-for(let j in oldArray){
-    console.log(oldArray[j]);
+oldArray1.splice(0,10); // delete first 11-20
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
-
-for(let i=21;i<=25;i++){
-    oldArray.splice(i-1,1,2**(i-19));
+oldArray1=newArray1.concat(oldArray1); //adding reversed 11-20 to the start
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
+};
+for(let i=11;i<=15;i++){
+    oldArray1.splice(i-1,1,2**(i-9));
 }
-for(let j in oldArray){
-    console.log(oldArray[j]);
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
-for(let i=25;i<30;i++){
-    oldArray.splice(i,1,1);
+for(let i=15;i<20;i++){
+    oldArray1.splice(i,1,1);
 }
-for(let j in oldArray){
-    console.log(oldArray[j]);
-};
-let elem3135=oldArray[30]+" "+oldArray[31]+" "+oldArray[32]+" "+oldArray[33]+" "+oldArray[34];
-oldArray.splice(30,5,elem3135);
-for(let j in oldArray){
-    console.log(oldArray[j]);
+for(let j in oldArray1){
+    console.log(oldArray1[j]);
 };
 
 //2 фукнция, которая удаляет из массива повторяющиеся элементы
@@ -114,18 +112,15 @@ for(let j in arrtemp){
 //3
 arrtemp=[0,1,4,0,3,2,3];
 function delFalseElem(arr){
-    // let result=arr.slice();
-    // for(let i=0;i<arr.length-1;i++){
-    //     if(i>-1 && (Boolean(arr[i]))){
-    //         result=arr.splice(i,1);
-    //         i--;
-    //         console.log(i+" i");
-    //     }
-    // }
-    // return result; smth wrong...
     return arr.filter(item => item);
 }
 arrtemp=delFalseElem(arrtemp);
 for(let j in arrtemp){
     console.log(arrtemp[j]);
 };
+
+
+
+
+
+
