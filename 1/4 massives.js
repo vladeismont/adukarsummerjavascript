@@ -197,3 +197,80 @@ tmpar=arElSum(getRandomArray(5), getRandomArray(5));
 for(let j in tmpar){
     console.log(tmpar[j]);
 };
+
+//6 bubble sort
+function bblSort(array){
+    let swapped = true;
+    let len=array.length;
+    if(len>1)
+	do {
+		swapped = false;
+		for (let j = 0; j < len; j++) {
+            console.log(typeof array[j+1]); 
+			if (array[j] > array[j + 1]) {
+                // question:
+                // if last element than is there execution of array[j+1] data?? see !210 string
+				console.log("true:"+j); 
+                let temp = array[j];
+	} while (swapped);
+	return array;
+}
+tmpar=bblSort(getRandomArray(5));
+for(let j in tmpar){
+    console.log(tmpar[j]);
+};
+
+//7 Проверьте, есть ли в массиве два числа, сумма которых очень близка к 1 (0.999 < sum < 1.001). Если такая пара (или такие пары) есть, выведите их в консоль.
+function cmpNum(array){
+    let len=array.length;
+    for(let i=0;i<len-1;++i){
+        for(let j=i+1;j<len-1;++j){
+            if((array[i]+array[j])<1.001 &&(array[i]+array[j])>0.999)
+                console.log(("#1="+array[i]+"; #2="+array[j]));
+        }
+    }
+}
+cmpNum(getRandomArray(5));  //"cmpNum(arraylenght)"...(5)
+
+
+//8 Создайте массив той же длины, что исходный. На месте самого большого числа исходного массива в новом вставьте число 1, на месте второго по величине – 2 и так далее.
+function bblSortReplace(array){
+    for(let j in array){
+        console.log(array[j]);
+    };
+
+    let array1=array.slice();
+    array1.sort();
+    array1.reverse();
+    let len=array1.length;
+    let ar=[];
+    for(let i=0;i<len;++i){
+        console.log("x----- "+array.indexOf(array1[i]));
+        let x=array.indexOf(array1[i]);
+        ar[x]=i+1;
+    }
+    return ar;
+}
+tmpar=bblSortReplace(getRandomArray(5));
+for(let j in tmpar){
+    console.log(tmpar[j]);
+};
+
+//9  Сделайте сдвиг массива вправо на X позиций (X передайте в функцию в качестве аргумента). Элементы, которые после сдвига "уходят" за пределы его длины, переместите на освободившиеся первые Х позиций.
+function moveElements(len){
+    let ar=getRandomArray(5);
+    for(let j in ar){
+        console.log(ar[j]);
+    };
+    let x=ar.length;
+    for(let i=0;i<len;i++){
+        var removed=ar[x-1];
+        ar.splice(x-1,1);
+        console.log(removed);
+        ar.splice(0,0,removed);
+    }
+    for(let j in ar){
+        console.log(ar[j]);
+    };
+}
+moveElements(3);
