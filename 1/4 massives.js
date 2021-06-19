@@ -212,6 +212,12 @@ function bblSort(array){
                 // if last element than is there execution of array[j+1] data?? see !210 string
 				console.log("true:"+j); 
                 let temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+				swapped = true;
+                
+			}
+		}
 	} while (swapped);
 	return array;
 }
