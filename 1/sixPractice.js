@@ -144,15 +144,36 @@ console.log(getKlass(13,8));
 // «карандаш» с правильным окончанием («12 карандашей», но «22
 // карандаша»).
 function words(n){
-    //????????wtf
+    let str=n.toString();
+    console.log(str.length);
+    if(str.length==1){
+        switch (str){
+            case "1": return str+" карандаш";
+            case "2":
+            case "3":
+            case "4": return str+" карандаша";
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+            case "0":return str+" карандашей";
+            default: return "сам егог!";
+        }
+    }
+    //to do
 }
-words(10);
+console.log(words(9));
 
 //10Создайте функцию, которая получает два числа и возвращает знак их произведения. Если результат
 // равен нулю, возвращать
 // ‘+’.
 //wtf??? znak proizvedeni9
-
+function znak(a,b){
+    if(a*b>=0)console.log("+");
+    else console.log("-");
+}
+znak(5,-1);
 //11 Создайте функцию, которая получает число и выводит в консоль
 // все его делители.
 function showDividers(num){
