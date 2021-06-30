@@ -145,8 +145,8 @@ console.log(getKlass(13,8));
 // карандаша»).
 function words(n){
     let str=n.toString();
-    console.log(str.length);
-    if(str.length==1){
+    let len=str.length;
+    if(len==1){
         switch (str){
             case "1": return str+" карандаш";
             case "2":
@@ -161,9 +161,19 @@ function words(n){
             default: return "сам егог!";
         }
     }
-    //to do
+    else if(len>1){
+        let num=n%100;
+        let strnum=num.toString();
+        let numchar=strnum.charAt(strnum.length-1);
+        if(num>9 && num<21){
+            return n+" карандашей";
+        }
+        else if(numchar>1 && numchar<5)return str+" карандаша";
+        else if(numchar==1) return str+" карандаш";
+        else return str+" карандашей";
+    }
 }
-console.log(words(9));
+console.log(words(777));
 
 //10Создайте функцию, которая получает два числа и возвращает знак их произведения. Если результат
 // равен нулю, возвращать
