@@ -88,3 +88,24 @@ tz7(new Date());
 
 //homew
 //1 Напишите функцию, которая принимает три числа, и определяет, можно ли построить треугольник со сторонами, длина которых равна этим числам. Возвращать функция должна объект из двух свойств: possible (true или false) и angles (объект с тремя свойствами, равными углам полученного треугольника в градусах).
+function tzhome1(a,b,c){
+    if(a<b+c && b<a+c && c<a+b){
+        let angleA,angleB,angleC;
+        angleA=Math.acos(((b*b+c*c-a*a)/(2*b*c)))*180/Math.PI;
+        angleB=Math.acos(((a*a+c*c-b*b)/(2*a*c)))*180/Math.PI;
+        angleC=Math.acos(((b*b+a*a-c*c)/(2*a*b)))*180/Math.PI;
+        return [Math.round(angleA), Math.round(angleB), Math.round(angleC)];
+    }
+    else return false;
+}
+console.log(tzhome1(3,4,5));
+
+//2Напишите функцию, которая определяет, является ли строка палиндромом. Учитывайте, что пробелы и знаки препинания не влияют на «палиндромность» строки!
+function tzhome2(str){
+    str = str.toLowerCase();
+    return str === str.split("").reverse().join('');
+}
+console.log(tzhome2("яидусме ч емсудия"));
+
+//Напишите функцию, которая принимает строку и возвращает символ, который встречается в ней чаще всего. Если таких символов несколько, функция должна возвращать строку из этих символов.
+
