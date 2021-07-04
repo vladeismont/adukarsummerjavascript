@@ -103,9 +103,104 @@ console.log(tzhome1(3,4,5));
 //2Напишите функцию, которая определяет, является ли строка палиндромом. Учитывайте, что пробелы и знаки препинания не влияют на «палиндромность» строки!
 function tzhome2(str){
     str = str.toLowerCase();
-    return str === str.split("").reverse().join('');
+    return str === str.split(/[/s]/).reverse().join('');
 }
-console.log(tzhome2("яидусме ч емсудия"));
+console.log(tzhome2("1я иду с ме;чем.!#@ судия1"));
 
-//Напишите функцию, которая принимает строку и возвращает символ, который встречается в ней чаще всего. Если таких символов несколько, функция должна возвращать строку из этих символов.
+//3 Напишите функцию, которая принимает строку и возвращает символ, который встречается в ней чаще всего. Если таких символов несколько, функция должна возвращать строку из этих символов.
+function maxRecurringChar(text) {
+    let charMap = {};
+    let charArray =[];
+    let vaulesArray = [];
+    let maxCharValue = 0;
+    for (let char of text) {
+        if (charMap.hasOwnProperty(char)) {
+            charMap[char]++;
+        } else {
+            charMap[char] = 1;
+        }
+    }
+    charArray = Object.keys(charMap);
+    vaulesArray = Object.values(charMap);
+    maxCharValue = Math.max(...vaulesArray);
+    return "\'"+charArray[vaulesArray.indexOf(maxCharValue)]+"\'";
+}
+console.log(maxRecurringChar("rrrcuijctu       a"));
 
+//4 Напишите функцию, которая замяняет первую букву каждого слова в строке на такую же большую.
+function upFirstLetter(text){
+    return text.replace(/\b\w/g, c => c.toUpperCase());
+}
+console.log(upFirstLetter("asdgmp asdgkm asdgmf asdgko"));
+
+//5 Напишите функцию, которая заменяет все повторяющиеся буквы в строке на звёздочки. Например, строка "я учусь программированию" должна преобразоваться в "я уч*сь прог*ам*и**в*н*ю".
+function replacetalts(str) {
+    str = str.toLowerCase();
+    let ar=Array.from(new Set(str)).join(' ');
+    let nAr=[];
+    for(let i=0;i<ar.length;++i){
+        let f=0;
+        for(let j=0;j<str.length;++j){
+            if(ar[i]==str[j] && f==0){
+                nAr[j]=str[j];
+                f=1;
+            }
+            else if(ar[i]==str[j] && f>0){
+                nAr[j]='*';
+            }
+        }
+    }
+    return nAr;
+
+}
+let ar=replacetalts("я учусь программированию");
+let str='';
+for(let i in ar){
+    str+=ar[i];
+}
+console.log(str);
+
+//6 Напишите функцию, которая возвращает текущий день недели на русском языке.
+function tz6(xDate){
+    let yDate=new Date(xDate);
+    let days = [
+        'Воскресенье',
+        'Понедельник',
+        'Вторник',
+        'Среда',
+        'Четверг',
+        'Пятница',
+        'Суббота'
+    ];
+    let d = yDate;
+    let n = yDate.getDay();
+    return days[n];
+}
+
+console.log(tz6(new Date));
+
+//7 Напишите функцию, которая принимает у пользователя дату в формате "ДД-ММ-ГГГГ" и, используя функцию из задачи 6, выдаёт в консоль день недели для этой даты.
+let nDate=new Date(2000,0,1,23,60) //prompt
+console.log(tz6(nDate));
+
+//8 Примите у пользователя день его рождения в формате "ДД-ММ-ГГГГ". Напишите функцию, которая выводит в консоль количество дней, оставшихся до его дня рождения. Напишите другую функцию, которая возвращает дату, в которую пользователь отметит ближайший 1000-дневный юбилей (например, когда ему исполнится 12000 дней).
+function birthdayIn(xDate){
+    let birthday = new Date(xDate);
+    let today = new Date();
+    birthday.setFullYear(today.getFullYear());
+    if (today > birthday) {
+        birthday.setFullYear(today.getFullYear() + 1);
+    }
+    return Math.floor((birthday - today) / (1000*60*60*24));
+}
+nDate=new Date(2000,1,1);//prompt
+console.log(birthdayIn(nDate));
+
+function getLeftDays(xDate){
+    let birthday = new Date(xDate);
+    let today = new Date();
+    let days=Math.floor((today-birthday) / (1000*60*60*24))
+    return 1000-days%1000;
+}
+nDate=new Date(2000,1,1);//prompt
+console.log("your another 1000's day in "+getLeftDays(nDate)+" day(s)");
