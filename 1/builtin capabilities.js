@@ -81,7 +81,7 @@ tz6();
 // секунд, прошедших с начала текущего дня.
 function tz7(xDate){
     let sec=0;
-    sec=(xDate.getHours()+1)*60*60+(xDate.getMinutes()+1)*60+xDate.getSeconds();
+    sec=(xDate.getHours())*60*60+(xDate.getMinutes())*60+xDate.getSeconds();
     console.log(sec);
 }
 tz7(new Date());
@@ -103,9 +103,11 @@ console.log(tzhome1(3,4,5));
 //2Напишите функцию, которая определяет, является ли строка палиндромом. Учитывайте, что пробелы и знаки препинания не влияют на «палиндромность» строки!
 function tzhome2(str){
     str = str.toLowerCase();
-    return str === str.split(/[/s]/).reverse().join('');
+    let tmp=str.replace(/[ .,!?\/#!$%\'\^&\*;:{}=\-_`~()]/g,"");
+    console.log(tmp,tmp.split('').reverse().join(''));
+    return tmp === tmp.split('').reverse().join('');
 }
-console.log(tzhome2("1я иду с ме;чем.!#@ судия1"));
+console.log(tzhome2("я иду с мечем(){}',.!? судия"));
 
 //3 Напишите функцию, которая принимает строку и возвращает символ, который встречается в ней чаще всего. Если таких символов несколько, функция должна возвращать строку из этих символов.
 function maxRecurringChar(text) {
