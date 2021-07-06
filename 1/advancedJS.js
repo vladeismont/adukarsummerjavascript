@@ -72,40 +72,87 @@ function getCharCNum(ar,char){
 }
 console.log(getCharCNum(ar,'с'));
 
+//homework
+//1 Напишите функцию, которая принимает в качестве параметра строку из одного символа. Подсчитайте количество таких символов во всех элементах массива, как в задаче 3 из практики. При подсчёте прописные и строчные буквы считайте одинаковыми.
+function tz01(ar){
+    let num=0;
+    function tz011(char){
+        for(let i in ar){
+            // tz01 homework
+            /*if((ar[i].match(new RegExp(char, "g")) || []).length) {
+                num++;
+            }*/
 
-
-
-
-
-
-
-
-
-/*let name = "John";
-
-function sayHi() {
-    console.log("Hi, " + name);
+            //tz02 homework
+            let str=ar[i].toLowerCase();
+            for(let j=0;j<str.length;++j){
+                if((str[j].match(new RegExp(char.toLowerCase(), "g")) || []).length){
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+    return tz011;
 }
+let tmp1=tz01(ar);
+let tmp1S=tmp1('с');
+console.log(tmp1S,tmp1('а'));
 
-name = "Pete";
+//2 Напишите функцию, которая будет возвращать частичную функцию от функции из задачи 1, фиксируя искомый символ. Например:
+// let countOfE = letterCounter('e');
+// console.log(countOfD(["abcde", "eerie", "MBE"])); // 5
 
-sayHi(); // что будет показано: "John" или "Pete"?
+//see tz01() - #77 string
+console.log(tz01(["abcde", "eerie", "MBE"])('e')); // 5
 
 
+//3 Отфильтруйте массив городов так, чтобы в нём остались только города из штата Техас, которые с 2000 по 2013 выросли в населении.
 
-function makeWorker() {
-    let name = "Pete";
+import { hellodata } from './module.js';
+let val = hellodata();
+//console.log(val);
+let someVar=val.filter(item=> (item.state=="Texas" && item.growth_from_2000_to_2013.split('%').join('')[0]>0));
+console.log(someVar);
 
-    return function() {
-        console.log(name);
-    };
+//4 Подсчитайте, сколько миллионов населения живёт во всех городах на долготе от -110 до -120 градусов.
+let population=val.reduce(function(res,item){
+    if(item.longitude>=(-120) && item.longitude<=(-110)){
+        let tmp=Number(item.population);
+        res+=tmp;
+    }
+    return res;
+},0);
+console.log(population);
+
+//5 Создайте массив только из тех городов, которые начинаются на букву S, при этом отсортируйте элементы этого массива по названию штата.
+someVar=val.filter(function(item){
+    if(item.city.split("")[0]=='S') return true;
+})
+function compareCitySort(a,b){
+    if(a.state>b.state) return 1;
+    if (a.state == b.state) return 0;
+    if (a.state < b.state) return -1;
 }
+someVar=someVar.sort(compareCitySort);
+console.log(someVar);
 
-name = "John";
-
-// create a function
-let work = makeWorker();
-
-// call it
-work(); // что будет показано? "Pete" (из места создания) или "John" (из места выполнения)
-*/
+//6 Преобразуйте представленный массив "Города" в объект "Штаты":
+// для каждого штата – отдельное свойство объекта (ключ = название штата);
+// значение каждого свойства – массив городов;
+// каждый элемент массива – название города, население и место в общем рейтинге (rank).
+function newAr(ar,property){
+    return ar.reduce(function (res,obj){
+            let state=obj[property];
+            if(!res[state]){
+                res[state]=[];
+            }
+            let city= {};
+            city.city=obj.city;
+            city.rank=obj.rank;
+            city.population=obj.population;
+            res[state].push(city);
+            return res;
+        },{})
+}
+console.log(newAr(val,"state"));
