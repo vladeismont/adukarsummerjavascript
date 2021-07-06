@@ -3,8 +3,10 @@
 // счётчик tictoc(). start – стартовое значение счётчика, step – его шаг. При каждом вызове tictoc
 // увеличивает значение счётчика на step.
 function counterFactory(start){
+    var count=start;
     function tictoc(step){
-        return start+step;
+        count+=step;
+        return count;
     }
     return tictoc;
 }
@@ -156,3 +158,44 @@ function newAr(ar,property){
         },{})
 }
 console.log(newAr(val,"state"));
+
+let str1='Разбейте текст этой задачи на отдельные слова, удаляя по пути точки и запятые, а полученные слова\n' +
+    '// сложите в массив.\n' +
+    '// Напишите функцию, которая возвращает массив из тех же слов, но развёрнутых задом наперёд, причём\n' +
+    '// массив должен быть отсортирован по количеству букв в слове. Напишите другую функцию, которая\n' +
+    '// считает общее количество букв «с» во всех\n' +
+    '// элементах массива.';
+console.log((str1.match(new RegExp('а', "g")) || []).length);
+function findBigSmall(InStr=''){
+    function findDifferent(InStrDif = '') {
+        let counts = 0;
+        for (let index in InStrDif){
+            if (InStr[index] != InStrDif[index])
+            { counts++;}
+        }
+        return counts;
+    }
+    console.log("Big = " + findDifferent(InStr.toUpperCase()));
+    console.log("Small = " + findDifferent(InStr.toLowerCase()));
+
+}
+findBigSmall("asdkogmASKFO")
+console.log((str1.match(new RegExp(/([а-я]+)/, "g")) || []).length);
+console.log((str1.match(new RegExp(/[А-Я]+/, "g")) || []).length);
+function getAr(ar,a=undefined,b=undefined){
+    let ar1=[];
+    return ar.reduce(function (res,elem){
+        if(a && b){
+            if((Number(elem)>b && b) || (Number(elem)<a && a)){
+                ar1.push(elem);
+            }
+        }
+        else if(!b){
+            if((Number(elem)<a && a)){
+                ar1.push(elem);
+            }
+        }
+        return ar1;
+    },[])
+}
+console.log(getAr(['1','3'],2))
