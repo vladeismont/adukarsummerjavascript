@@ -6,13 +6,16 @@ TZ examples
 <h2>26. Функции</h2>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/functions.js">task</a></p>
 <br>
+<h2>27. Поиск ошибок и отладка кода. Практика</h2>
+<p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/sixPractice.js">task</a></p>
+<br>
 <h2>28. Массивы</h2>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/4%20massives.js">task</a></p>
 <br>
 <h2>29. Объекты</h2>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/objects.js">task</a></p>
 <br>
-<h2>Встроенные возможности JavaScript</h2>
+<h2>30 Встроенные возможности JavaScript</h2>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/builtin%20capabilities.js">task</a></p>
 <br>
 <h2>32. Продвинутый JS I. Замыкания. Методы массивов с функциями обратного вызова</h2>
