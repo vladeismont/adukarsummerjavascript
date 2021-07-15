@@ -20,8 +20,10 @@ console.log(tz1(1),tz2(5),tz1(2));
 //console.log(take(tictoc(),10)); ???
 function take(fn,x){
     let ar=[], ar1=[];
+    let tmp=counterFactory(2);
     for(let i=0;i<x;++i)
-        ar1[i]=fn;
+        ar1[i]=tmp(1);
+        //ar1[i]=fn;
         //ar[i]=counterFactory(2)(2);
     return ar1;
 }
