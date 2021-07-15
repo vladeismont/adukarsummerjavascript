@@ -25,3 +25,8 @@ TZ examples
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/DOM.js">practice</a></p>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/DOM-hw.js">homework</a></p>
 <br>
+<h2>34. События</h2>
+<p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/events/practice.js">practice</a></p>
+<br>
+
+

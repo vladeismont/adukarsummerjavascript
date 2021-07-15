@@ -28,5 +28,6 @@ tmp=document.querySelector('[name="info[0]"]');
 console.log(tmp);
 
 //7 Элемент с именем info[2], внутри формы с именем search-person.
-tmp=document.querySelector('[name="info[2]"]');
-console.log(tmp);
+tmp=document.querySelector('[name="search-person"]');
+let tmp1=document.querySelector('[name="info[2]"]');
+console.log(tmp1);

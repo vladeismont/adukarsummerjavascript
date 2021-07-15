@@ -36,6 +36,7 @@ tmp=document.createTextNode(" ! ");
 //elem.prepend(tmp);
 //elem=document.querySelectorAll("li")[3].previousSibling;
 elem.appendChild(tmp);
+elem.appendChild(tmp); // 2))
 console.log(elem);
 
 
