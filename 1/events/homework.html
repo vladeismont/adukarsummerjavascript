@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      .bordered{
+        border: 2px solid black;
+      }
+      .striped .tr1:nth-child(odd){
+        background: #efa;
+      }
+      .highlight .tr1:nth-child(even){
+        background: #0ef;
+      }
+    </style>
+</head>
+<body>
+  <table id="tbl">
+    <tr class="tr1">
+      <td>111</td>
+      <td>222</td>
+      <td>333</td>
+    </tr>
+    <tr class="tr1">
+      <td>111</td>
+      <td>222</td>
+      <td>333</td>
+    </tr>
+    <tr class="tr1">
+      <td>111</td>
+      <td>222</td>
+      <td>333</td>
+    </tr>
+    <br>
+    <div id="d1">
+      <span>span</span>
+      <a href="#">ref</a>
+      <div>div</div>
+    </div>
+  </table>
+  <input type="radio" value="value1" name="group1" id="bordered"  onclick="handleClick(this);">
+  <input type="radio" value="value2" name="group1" id="striped"  onclick="handleClick(this);">
+  <input type="radio" value="value3" name="group1" id="highlight"  onclick="handleClick(this);">
+<script src="homework.js"></script>
+</body>
+</html>
