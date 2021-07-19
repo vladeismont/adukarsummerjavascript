@@ -11,7 +11,7 @@ button.addEventListener("click",function(){
 
 //2 Добавьте на страницу таблицу в стандартном оформлении. Создайте три класса для этой таблицы: bordered (с границами вокруг всех ячеек), striped (разные цвета для чётных и нечётных строк), highlight (оформление стандартное, но при наведении на ячейку текст в ней меняет цвет). При первом клике на таблице добавьте ей класс bordered, при втором клике удалите класс bordered и добавьте класс striped, при третьем клике удалите класс striped и добавьте класс highlight. Четвёртый и последующие клики запускают «карусель классов» по второму кругу.
 var num=0;
-/*tbl.addEventListener("click",function(){
+tbl.addEventListener("click",function(){
     if(num>2) {
         num=0;
         tbl.classList.remove("highlight");
@@ -29,7 +29,7 @@ var num=0;
         tbl.classList.add("highlight");
     }
     ++num;
-});*/
+});
 
 //3 Модифицируйте задачу 2. Добавьте три radiobutton. При выборе первой включайте класс bordered, при выборе второй — striped, при выборе третьей — highlight. При включении каждого класса выключайте остальные два.
 
@@ -57,4 +57,5 @@ input.addEventListener('mouseover',function(){
 });
 input.addEventListener('mouseout',function(){
     input.style.background="white";
+    document.body.style.backgroundImage="";
 });
