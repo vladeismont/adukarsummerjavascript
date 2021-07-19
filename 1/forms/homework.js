@@ -9,7 +9,7 @@ let reg=new RegExp(/([01]\d\.[0-6]\d\s(am|pm)){1}/gi);
 console.log(str.match(reg));
 
 //4 Удалите одной регуляркой все повторяющиеся слова из строки, например для 'dsf xxx aaa xxx sd aaa' должно вернуть 'dsf xxx aaa sd'.
-str="dsf xxx aaa xxx sd aaa";
-reg=new RegExp(/(\b\S+\b)(?=.*\1)/g);
+str="dsf xxx aaa xxx sd aaa xxx aaa";
+reg=new RegExp(/(\b\w+\b)(?=.*\1)/g);
 console.log(str.replace(reg,""));
 // ?????????
