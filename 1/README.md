@@ -30,5 +30,10 @@ TZ examples
 <br>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/events/homework.js">homework</a></p>
 <br>
+<h2>36. Формы. Регулярные выражения</h2>
+<p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/forms/practice.js">practice</a></p>
+<br>
+<p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/forms/homework.js">homework</a></p>
+<br>
 
 
