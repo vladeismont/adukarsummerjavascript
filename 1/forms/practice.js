@@ -21,7 +21,7 @@ show.onclick=function (){
 }
 
 //1 Создайте регулярное выражение для поиска трёх точек.
-let reg=new RegExp("[.]{3}","g");
+let reg=new RegExp("[\.]{3}","g");
 let str="ag.aerhysaerh.aegraerg. ..."; // last ...
 console.log(str.match(reg));
 
