@@ -35,5 +35,8 @@ TZ examples
 <br>
 <p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/forms/homework.js">homework</a></p>
 <br>
+<h2>. DOM. Работа со страницей II</h2>
+<p><a href="https://github.com/vladeismont/adukarsummerjavascript/blob/main/1/dom_working_with_page">homework</a></p>
+<br>
 
 
