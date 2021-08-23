@@ -1,8 +1,9 @@
 $(document).ready( function(){
     /*$("#board").html(renderCells(1,1));
     $("#board").html(renderCells(1,2));*/
-    $('#board').html(renderBoard());
-    $('#board').html(renderCheckers());
+    $(`#board`).html(renderBoard());
+    $(`.checker`).click(selectChecker);
+    $(`#board`).html(renderCheckers());
 })
 function renderCells(row,col){
     if(setCellColor(row,col)==true){
@@ -17,7 +18,7 @@ function renderRow(row){
     return `<div class='row' id='row-${row}'>${renderCells(row,1)}${renderCells(row,2)}${renderCells(row,3)}${renderCells(row,4)}${renderCells(row,5)}${renderCells(row,6)}${renderCells(row,7)}${renderCells(row,8)}</div>`;
 }
 function setCellColor(r,c){
-    if((r%2==1 && c%2==1) || (r%2==0 && c%2==0)) {return true;}
+    if(r%2==c%2) {return true;}
     else{
         return false;}
 }
@@ -55,6 +56,12 @@ function renderCheckers(){
     for(let i=0;i<checkers.length;++i){
         let checker=checkers[i];
         $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color));
+        console.log($(`#cell-${checker.row}-${checker.col}`));
     }
 }
-
+var tempChecker=null;
+function selectChecker(){
+    let tmp=$(this);
+    console.log(tmp);
+    tempChecker=tmp;
+}
