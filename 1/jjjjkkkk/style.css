@@ -1,0 +1,46 @@
+body{
+    text-align: center;
+    background-image: url("images/backgroundv462-n-130-textureidea_1.jpg");
+    background-size: cover;
+}
+.white{
+     background-image: url("images/whiteCell.jpg");
+    background-size: cover;
+ }
+.black{
+    background-image: url("images/blackCell.jpg");
+    background-size: cover;
+}
+#board{
+    /*display: flex;
+    flex-direction: column;*/
+    display: inline-block;
+}
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+.cell {
+    width: 9vmin;
+    height: 9vmin;
+    display: inline-block;
+    /*background-image: url("images/whiteCell.jpg");*/
+}
+.white-checker{
+    background-image: url("images/unnamed1.png");
+    background-size: cover;
+}
+.black-checker{
+    background-image: url("images/clipart1952752.png");
+    background-size: cover;
+
+}
+.checker{
+    border-radius: 50%;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12.5%;
+}
