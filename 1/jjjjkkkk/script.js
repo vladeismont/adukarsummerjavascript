@@ -54,28 +54,30 @@ function renderChecker(color,ind){
     return `<div class="checker ${color}-checker" ind="${ind}"></div>`;
 }
 function renderCheckers(){
+    clearBoard();
+    $(`.cell.white`).click(dropChecker);
     for(let i=0;i<checkers.length;++i){
         let checker=checkers[i];
         $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color,i));
     }
     $(`.checker`).click(selectChecker);
-    $(`.cell.white`).click(dropChecker);
+
 }
-var selectedChecker=null;
+var selectedChecker=undefined;
 function selectChecker(){
 
     let tmp=$(this);
-    let CheckerInd=tmp.attr("ind");
+    var CheckerInd=tmp.attr("ind");
     if(tmp.hasClass("selected")){
         tmp.remove();
-        checkers[CheckerInd].row=undefined;
-        checkers[CheckerInd].col=undefined;
-        checkers[CheckerInd].color=undefined;
-        checkers[CheckerInd]=undefined;
+        checkers[tmp.attr("ind")].row=undefined;
+        checkers[tmp.attr("ind")].col=undefined;
+        checkers[tmp.attr("ind")]=undefined;
+        return;
     }
     console.log(tmp);
     $(`.selected`).removeClass("selected");
-    selectedChecker=tmp;
+    selectedChecker=checkers[CheckerInd];
 
     console.log(CheckerInd);
     tmp.addClass("selected");
@@ -83,13 +85,13 @@ function selectChecker(){
 function dropChecker(){
     if(selectedChecker){
         let cell=$(this);
-        let id=selectedChecker.attr('id');
-        selectedChecker.row=id.split('-')[1];
-        selectedChecker.col=id.split('-')[2];
-        /*renderChecker(color,ind)*/
-        checkers[id].row=id.split('-')[1]
-        checkers[id].col=id.split('-')[2]
-        clearBoard();
+        let myArr=cell.attr('id').split('-');
+        let idRow=myArr[1];
+        let idCol=myArr[2];
+        console.log(myArr,idRow,idCol)
+        console.log(selectedChecker);
+        checkers[selectedChecker.attr("ind")].row=idRow;
+        checkers[selectedChecker.attr("ind")].col=idCol;
         renderCheckers();
     }
 
