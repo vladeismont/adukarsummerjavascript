@@ -44,3 +44,7 @@ body{
     align-items: center;
     margin: 12.5%;
 }
+.selected{
+    margin: 0;
+    border: 1vmin solid coral;
+}

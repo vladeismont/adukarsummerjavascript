@@ -2,11 +2,12 @@ $(document).ready( function(){
     /*$("#board").html(renderCells(1,1));
     $("#board").html(renderCells(1,2));*/
     $(`#board`).html(renderBoard());
-    $(`.checker`).click(selectChecker);
     $(`#board`).html(renderCheckers());
+    $(`.checker`).click(selectChecker);
 })
 function renderCells(row,col){
-    if(setCellColor(row,col)==true){
+    /*if(setCellColor(row,col)==true){*/
+    if(row%2==col%2){
     return `<div id="cell-${row}-${col}" class="cell black"></div>`;}
     else{
     return `<div id="cell-${row}-${col}" class="cell white"></div>`;}
@@ -49,19 +50,22 @@ var checkers=[
     {row:8, col:5,color:'white'},
     {row:8, col:7,color:'white'},
 ]
-function renderChecker(color){
-    return `<div class="checker ${color}-checker"></div>`;
+function renderChecker(color,ind){
+    return `<div class="checker ${color}-checker" ind="${ind}"></div>`;
 }
 function renderCheckers(){
     for(let i=0;i<checkers.length;++i){
         let checker=checkers[i];
-        $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color));
-        console.log($(`#cell-${checker.row}-${checker.col}`));
+        $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color,i));
     }
 }
 var tempChecker=null;
 function selectChecker(){
+    $(`.selected`).removeClass("selected");
     let tmp=$(this);
     console.log(tmp);
     tempChecker=tmp;
+    let CheckerInd=tmp.attr("ind");
+    console.log(CheckerInd);
+    tmp.addClass("selected");
 }
