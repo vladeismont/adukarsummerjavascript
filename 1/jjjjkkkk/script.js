@@ -1,9 +1,6 @@
 $(document).ready( function(){
-    /*$("#board").html(renderCells(1,1));
-    $("#board").html(renderCells(1,2));*/
     $(`#board`).html(renderBoard());
     renderCheckers();
-    /*$(`.checker`).click(selectChecker);*/
 })
 function renderCells(row,col){
     /*if(setCellColor(row,col)==true){*/
@@ -49,7 +46,7 @@ function renderChecker(color,ind){
     return `<div class="checker ${color}-checker" ind="${ind}"></div>`;
 }
 function renderCheckers(){
-    clearBoard();
+    $(`.cell.white`).html('');
     $(`.cell.white`).click(dropChecker);
     for(let i=0;i<checkers.length;++i){
         let checker=checkers[i];
@@ -57,13 +54,10 @@ function renderCheckers(){
         $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color,i));
     }
     $(`.checker`).click(selectChecker);
-
 }
 var selectedChecker=undefined;
 function selectChecker(){
-
     let tmp=$(this);
-
     if(tmp.hasClass("selected")){
         selectedChecker.row=undefined;
         selectedChecker.col=undefined;
@@ -71,14 +65,10 @@ function selectChecker(){
         renderCheckers();
         return;
     }
-
     $(`.selected`).removeClass("selected");
     var CheckerInd=tmp.attr("ind");
     selectedChecker=checkers[CheckerInd];
-
-    console.log(CheckerInd);
     tmp.addClass("selected");
-    console.log(checkers);
 }
 function dropChecker(){
     if(selectedChecker){
@@ -93,9 +83,4 @@ function dropChecker(){
         renderCheckers();
         selectedChecker=undefined;
     }
-
-}
-function clearBoard(){
-    $(`.cell.white`).unbind('click');
-    $(`.cell.white`).html('');
 }
