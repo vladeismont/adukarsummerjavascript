@@ -3,7 +3,7 @@ $(document).ready( function(){
     $("#board").html(renderCells(1,2));*/
     $(`#board`).html(renderBoard());
     $(`#board`).html(renderCheckers());
-    $(`.checker`).click(selectChecker);
+    /*$(`.checker`).click(selectChecker);*/
 })
 function renderCells(row,col){
     /*if(setCellColor(row,col)==true){*/
@@ -58,14 +58,43 @@ function renderCheckers(){
         let checker=checkers[i];
         $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color,i));
     }
+    $(`.checker`).click(selectChecker);
+    $(`.cell.white`).click(dropChecker);
 }
-var tempChecker=null;
+var selectedChecker=null;
 function selectChecker(){
-    $(`.selected`).removeClass("selected");
+
     let tmp=$(this);
-    console.log(tmp);
-    tempChecker=tmp;
     let CheckerInd=tmp.attr("ind");
+    if(tmp.hasClass("selected")){
+        tmp.remove();
+        checkers[CheckerInd].row=undefined;
+        checkers[CheckerInd].col=undefined;
+        checkers[CheckerInd].color=undefined;
+        checkers[CheckerInd]=undefined;
+    }
+    console.log(tmp);
+    $(`.selected`).removeClass("selected");
+    selectedChecker=tmp;
+
     console.log(CheckerInd);
     tmp.addClass("selected");
+}
+function dropChecker(){
+    if(selectedChecker){
+        let cell=$(this);
+        let id=selectedChecker.attr('id');
+        selectedChecker.row=id.split('-')[1];
+        selectedChecker.col=id.split('-')[2];
+        /*renderChecker(color,ind)*/
+        checkers[id].row=id.split('-')[1]
+        checkers[id].col=id.split('-')[2]
+        clearBoard();
+        renderCheckers();
+    }
+
+}
+function clearBoard(){
+    $(`.cell.white`).unbind('click');
+    $(`.cell.white`).html('');
 }
