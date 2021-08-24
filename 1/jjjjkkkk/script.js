@@ -2,7 +2,7 @@ $(document).ready( function(){
     /*$("#board").html(renderCells(1,1));
     $("#board").html(renderCells(1,2));*/
     $(`#board`).html(renderBoard());
-    $(`#board`).html(renderCheckers());
+    renderCheckers();
     /*$(`.checker`).click(selectChecker);*/
 })
 function renderCells(row,col){
@@ -17,11 +17,6 @@ function renderBoard(){
 }
 function renderRow(row){
     return `<div class='row' id='row-${row}'>${renderCells(row,1)}${renderCells(row,2)}${renderCells(row,3)}${renderCells(row,4)}${renderCells(row,5)}${renderCells(row,6)}${renderCells(row,7)}${renderCells(row,8)}</div>`;
-}
-function setCellColor(r,c){
-    if(r%2==c%2) {return true;}
-    else{
-        return false;}
 }
 var checkers=[
     {row:1, col:2,color:'black'},
@@ -58,6 +53,7 @@ function renderCheckers(){
     $(`.cell.white`).click(dropChecker);
     for(let i=0;i<checkers.length;++i){
         let checker=checkers[i];
+        $(`#cell-${checker.row}-${checker.col}`).unbind('click');
         $(`#cell-${checker.row}-${checker.col}`).html(renderChecker(checker.color,i));
     }
     $(`.checker`).click(selectChecker);
@@ -67,20 +63,22 @@ var selectedChecker=undefined;
 function selectChecker(){
 
     let tmp=$(this);
-    var CheckerInd=tmp.attr("ind");
+
     if(tmp.hasClass("selected")){
-        tmp.remove();
-        checkers[tmp.attr("ind")].row=undefined;
-        checkers[tmp.attr("ind")].col=undefined;
-        checkers[tmp.attr("ind")]=undefined;
+        selectedChecker.row=undefined;
+        selectedChecker.col=undefined;
+        selectedChecker=undefined;
+        renderCheckers();
         return;
     }
-    console.log(tmp);
+
     $(`.selected`).removeClass("selected");
+    var CheckerInd=tmp.attr("ind");
     selectedChecker=checkers[CheckerInd];
 
     console.log(CheckerInd);
     tmp.addClass("selected");
+    console.log(checkers);
 }
 function dropChecker(){
     if(selectedChecker){
@@ -90,9 +88,10 @@ function dropChecker(){
         let idCol=myArr[2];
         console.log(myArr,idRow,idCol)
         console.log(selectedChecker);
-        checkers[selectedChecker.attr("ind")].row=idRow;
-        checkers[selectedChecker.attr("ind")].col=idCol;
+        selectedChecker.row=idRow;
+        selectedChecker.col=idCol;
         renderCheckers();
+        selectedChecker=undefined;
     }
 
 }
