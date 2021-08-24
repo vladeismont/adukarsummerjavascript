@@ -43,6 +43,9 @@ var checkers=[
     {row:8, col:7,color:'white'},
 ]
 function renderChecker(color,ind){
+    if(checkers[ind].isKing){
+        return `<div class="checker ${color}-checker" ind="${ind}"><i class="far fa-star fa-2x"></i></div>`;
+    }
     return `<div class="checker ${color}-checker" ind="${ind}"></div>`;
 }
 function renderCheckers(){
@@ -80,6 +83,8 @@ function dropChecker(){
         console.log(selectedChecker);
         selectedChecker.row=idRow;
         selectedChecker.col=idCol;
+        if(selectedChecker.color=='white' && idRow==1) selectedChecker.isKing=true;
+        if(selectedChecker.color=='black' && idRow==8) selectedChecker.isKing=true;
         renderCheckers();
         selectedChecker=undefined;
     }
