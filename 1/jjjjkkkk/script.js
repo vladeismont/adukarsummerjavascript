@@ -111,7 +111,7 @@ checkers1=[
     [null,undefined,null,undefined,null,undefined,null,undefined],
     [undefined,null,undefined,1,undefined,null,undefined,null],
     [-1,undefined,-1,undefined,-1,undefined,-1,undefined],
-    [undefined,1,undefined,1,undefined,null,undefined,1],
+    [undefined,null,undefined,1,undefined,null,undefined,1],
     [1,undefined,1,undefined,1,undefined,1,undefined],
 ];
 function renderCheckers1(){
@@ -230,9 +230,21 @@ function isWhiteCanBeat(i,j,color){
 
     }*/    //to do **
 
-    console.log(":::"+checkers1[1].hasOwnProperty(7)); //left top -beat
+    //left top -can beat
     if(checkers1.hasOwnProperty(i-1) && checkers1.hasOwnProperty(i-2)&&checkers1[i-1].hasOwnProperty(j-1)&&checkers1[i-2].hasOwnProperty(j-2)){
         if((checkers1[i-1][j-1]==-1||checkers1[i-1][j-1]==-2) && checkers1[i-2][j-2]==null) return true;
+    }
+    //right top -can beat
+    if(checkers1.hasOwnProperty(i-1) && checkers1.hasOwnProperty(i-2)&&checkers1[i-1].hasOwnProperty(Number(j)+1)&&checkers1[i-2].hasOwnProperty(Number(j)+2)){
+        if((checkers1[i-1][Number(j)+1]==-1||checkers1[i-1][Number(j)+1]==-2) && checkers1[i-2][Number(j)+2]==null) return true;
+    }
+    //left bottom -can beat
+    if(checkers1.hasOwnProperty(Number(i)+1) && checkers1.hasOwnProperty(Number(i)+2)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)-1)&&checkers1[Number(i)+2].hasOwnProperty(Number(j)-2)){
+        if((checkers1[Number(i)+1][Number(j)-1]==-1||checkers1[Number(i)+1][Number(j)-1]==-2) && checkers1[Number(i)+2][Number(j)-2]==null) return true;
+    }
+    //right bottom - can beat
+    if(checkers1.hasOwnProperty(Number(i)+1) && checkers1.hasOwnProperty(Number(i)+2)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)+1)&&checkers1[Number(i)+2].hasOwnProperty(Number(j)+2)){
+        if((checkers1[Number(i)+1][Number(j)+1]==-1||checkers1[Number(i)+1][Number(j)+1]==-2) && checkers1[Number(i)+2][Number(j)+2]==null) return true;
     }
     return false;
 }
