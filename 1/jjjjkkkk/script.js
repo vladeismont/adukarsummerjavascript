@@ -155,8 +155,8 @@ function selectChecker1(){
             console.log(CheckerInd1-1,Number(CheckerInd2)+1);
             $(`#cell-${CheckerInd1}-${Number(CheckerInd2)+2}`).addClass("canDropChecker");
         }*/
-        if(isWhiteCanBeat(CheckerInd1,CheckerInd2,checkers1[CheckerInd1][CheckerInd2])){ //is checker in battle
-            console.log("white can beat");
+        if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
+            console.log("can beat");
         }
 
 
@@ -171,7 +171,7 @@ function dropChecker1(){
     }
 }
 
-function isWhiteCanBeat(i,j,color){
+function isCanBeat(i,j,color){
     console.log(i,j,color);
 
     /*if(i>1 && i<6){
@@ -232,19 +232,19 @@ function isWhiteCanBeat(i,j,color){
 
     //left top -can beat
     if(checkers1.hasOwnProperty(i-1) && checkers1.hasOwnProperty(i-2)&&checkers1[i-1].hasOwnProperty(j-1)&&checkers1[i-2].hasOwnProperty(j-2)){
-        if((checkers1[i-1][j-1]==-1||checkers1[i-1][j-1]==-2) && checkers1[i-2][j-2]==null) return true;
+        if((checkers1[i-1][j-1]==(-1*color)||checkers1[i-1][j-1]==(-2*color)) && checkers1[i-2][j-2]==null) return true;
     }
     //right top -can beat
     if(checkers1.hasOwnProperty(i-1) && checkers1.hasOwnProperty(i-2)&&checkers1[i-1].hasOwnProperty(Number(j)+1)&&checkers1[i-2].hasOwnProperty(Number(j)+2)){
-        if((checkers1[i-1][Number(j)+1]==-1||checkers1[i-1][Number(j)+1]==-2) && checkers1[i-2][Number(j)+2]==null) return true;
+        if((checkers1[i-1][Number(j)+1]==(-1*color)||checkers1[i-1][Number(j)+1]==(-2*color)) && checkers1[i-2][Number(j)+2]==null) return true;
     }
     //left bottom -can beat
     if(checkers1.hasOwnProperty(Number(i)+1) && checkers1.hasOwnProperty(Number(i)+2)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)-1)&&checkers1[Number(i)+2].hasOwnProperty(Number(j)-2)){
-        if((checkers1[Number(i)+1][Number(j)-1]==-1||checkers1[Number(i)+1][Number(j)-1]==-2) && checkers1[Number(i)+2][Number(j)-2]==null) return true;
+        if((checkers1[Number(i)+1][Number(j)-1]==(-1*color)||checkers1[Number(i)+1][Number(j)-1]==(-2*color)) && checkers1[Number(i)+2][Number(j)-2]==null) return true;
     }
     //right bottom - can beat
     if(checkers1.hasOwnProperty(Number(i)+1) && checkers1.hasOwnProperty(Number(i)+2)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)+1)&&checkers1[Number(i)+2].hasOwnProperty(Number(j)+2)){
-        if((checkers1[Number(i)+1][Number(j)+1]==-1||checkers1[Number(i)+1][Number(j)+1]==-2) && checkers1[Number(i)+2][Number(j)+2]==null) return true;
+        if((checkers1[Number(i)+1][Number(j)+1]==(-1*color)||checkers1[Number(i)+1][Number(j)+1]==(-2*color)) && checkers1[Number(i)+2][Number(j)+2]==null) return true;
     }
     return false;
 }
