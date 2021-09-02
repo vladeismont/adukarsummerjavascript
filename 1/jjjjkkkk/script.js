@@ -233,11 +233,10 @@ function isWhiteCanBeat(i,j,color){
     console.log(":::"+checkers1[1].hasOwnProperty(7)); //left top -beat
     if(checkers1.hasOwnProperty(i-1)){
         if(checkers1[i-1].hasOwnProperty(j-1)){
-            if(checkers1[i-2].hasOwnProperty(i-2)){
                 if(checkers1[i-2].hasOwnProperty(j-2)){
                     if((checkers1[i-1][j-1]==-1||checkers1[i-1][j-1]==-2) && checkers1[i-2][j-2]==null) return true;
                 }
-            }
+
         }
     }
     return false;
