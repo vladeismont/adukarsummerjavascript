@@ -8,7 +8,7 @@ body{
     background-size: cover;
  }
 .black{
-    background-image: url("images/blackCell.jpg");
+    background-image: url("images/graymarble.jpg");
     background-size: cover;
 }
 #board{
@@ -27,11 +27,13 @@ body{
     /*background-image: url("images/whiteCell.jpg");*/
 }
 .white-checker{
-    background-image: url("images/unnamed1.png");
+    background-image: url('images/checkers_PNG17.png');
+    /*background-image: url("images/unnamed1.png");*/
     background-size: cover;
 }
 .black-checker{
-    background-image: url("images/clipart1952752.png");
+    /*background-image: url("images/clipart1952752.png");*/
+    background-image: url('images/post-289-1536310601 (1).png');
     background-size: cover;
 
 }
@@ -47,4 +49,7 @@ body{
 .selected{
     margin: 0;
     border: 1vmin solid coral;
+}
+.canDropChecker{
+    background: burlywood;
 }
