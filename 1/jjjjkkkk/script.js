@@ -126,7 +126,7 @@ var checkers1=[
     [1,undefined,1,undefined,1,undefined,1,undefined],
 ];
 
-
+/*
 checkers1=[
     [undefined,null,undefined,-1,undefined,-1,undefined,null],
     [-1,undefined,null,undefined,null,undefined,-1,undefined],
@@ -137,6 +137,7 @@ checkers1=[
     [undefined,null,undefined,null,undefined,null,undefined,null],
     [null,undefined,1,undefined,1,undefined,1,undefined],
 ];
+*/
 function renderCheckers1(){
     //if((!$(`.white-checker`))){        //console.log("black-wins!")    }
 
