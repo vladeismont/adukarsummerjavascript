@@ -89,14 +89,14 @@ function selectChecker(){
     tmp.addClass("selected");
 }
 function dropChecker(){
-    console.log("drop checker function");
+    //console.log("drop checker function");
     if(selectedChecker){
         let cell=$(this);
         let myArr=cell.attr('id').split('-');
         let idRow=myArr[1];
         let idCol=myArr[2];
-        console.log(myArr,idRow,idCol)
-        console.log(selectedChecker);
+        //console.log(myArr,idRow,idCol)
+        //console.log(selectedChecker);
         selectedChecker.row=idRow;
         selectedChecker.col=idCol;
         if(selectedChecker.color=='white' && idRow==1) selectedChecker.isKing=true;
@@ -126,7 +126,7 @@ var checkers1=[
     [1,undefined,1,undefined,1,undefined,1,undefined],
 ];
 
-/*
+
 checkers1=[
     [undefined,null,undefined,-1,undefined,-1,undefined,null],
     [-1,undefined,null,undefined,null,undefined,-1,undefined],
@@ -136,9 +136,9 @@ checkers1=[
     [null,undefined,-1,undefined,1,undefined,1,undefined],
     [undefined,null,undefined,null,undefined,null,undefined,null],
     [null,undefined,1,undefined,1,undefined,1,undefined],
-];*/
+];
 function renderCheckers1(){
-    //if((!$(`.white-checker`))){        console.log("black-wins!")    }
+    //if((!$(`.white-checker`))){        //console.log("black-wins!")    }
 
 
     $(`.cell.black`).html('');
@@ -149,7 +149,7 @@ function renderCheckers1(){
         for(let j=0;j<8;++j){
             //let checker=checkers1[i][j];
             //$(`#cell-${Number(i)}-${Number(j)}`).unbind('click');
-            console.log("cell i j = ",i,j);
+            //console.log("cell i j = ",i,j);
             //if(nullCheckers.includes([i,j]))continue
             if(checkers1[i][j]<0){
                 $(`#cell-${Number(i)}-${Number(j)}`).unbind('click');
@@ -170,26 +170,39 @@ function renderCheckers1(){
     blackCheckersCanStep=[];
     let whiteCheckers=0;
     let blackCheckers=0;
+    let blackDamka=0;
+    let whiteDamka=0;
     for(let i=0;i<8;++i){
         for(let j=0;j<8;++j){
-            if(checkers1[i][j]==1||checkers1[i][j]==2) whiteCheckers+=1
-            if(checkers1[i][j]==-1||checkers1[i][j]==-2) blackCheckers+=1
+            //if(checkers1[i][j]==1||checkers1[i][j]==2) whiteCheckers+=1
+            //if(checkers1[i][j]==-1||checkers1[i][j]==-2) blackCheckers+=1
+            //(checkers1[i][j]==-2)blackDamka+=1
+            //if(checkers1[i][j]==2)whiteDamka+=1
             if(isCanBeat(i,j,1)){
                 whiteCheckerCanBeat.push(new Array(i,j))
-                console.log("white can jump");
+                //console.log("white can jump");
             }
             if(isCanBeat(i,j,-1)){
                 blackCheckerCanBeat.push(new Array(i,j))
-                console.log("black can jump");
+                //console.log("black can jump");
             }
         }
     }
-    if(whiteCheckers>0 && blackCheckers>0 ){
+    $(`.checker`).click(selectChecker1);
+    if(whiteDamka>0){
+        $(`.cell.black`).unbind('click');  //console.log("white wins"); alert("white wins")
+    }
+
+    if(blackDamka>0){
+        $(`.cell.black`).unbind('click');  //console.log("black wins"); alert("black wins")
+    }
+    /*if(whiteCheckers>0 && blackCheckers>0 ){
 
         $(`.checker`).click(selectChecker1);
 
-    }else if(blackCheckers==0){ $(`.cell.black`).unbind('click');  console.log("white wins")}
-    else {$(`.cell.black`).unbind('click'); console.log("black wins")}
+    }else if(blackCheckers==0){ $(`.cell.black`).unbind('click');  //console.log("white wins")}
+    else {$(`.cell.black`).unbind('click'); //console.log("black wins")}*/
+
 nullCheckers=[]
 }
 function renderChecker1(color,i,j){
@@ -208,16 +221,16 @@ function selectChecker1(){
     CheckerInd2=tmp.attr("j");
 
     selectedChecker=[CheckerInd1,CheckerInd2];
-    console.log(CheckerInd1,CheckerInd2)
+    //console.log(CheckerInd1,CheckerInd2)
 
-    //console.log(whiteCheckerCanBeat);
-    //console.log((whiteCheckerCanBeat.some))
+    ////console.log(whiteCheckerCanBeat);
+    ////console.log((whiteCheckerCanBeat.some))
     if(tmp.hasClass("white-checker") && (whiteCheckerCanBeat.length>0)&&(isCanBeat(CheckerInd1,CheckerInd2,1))){
         $(`.selected`).removeClass("selected");
         $(`.canDropChecker`).removeClass("canDropChecker");
         tmp.addClass("selected");
         if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
-            console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
+            //console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
         }
     }
     else if(tmp.hasClass("white-checker")&& (!(whiteCheckerCanBeat.length>0))){
@@ -225,7 +238,7 @@ function selectChecker1(){
         $(`.canDropChecker`).removeClass("canDropChecker");
         tmp.addClass("selected");
         if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
-            console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
+            //console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
         }
 
     }
@@ -234,7 +247,7 @@ function selectChecker1(){
 
 
 function isCanBeat(i,j,color){ //must return array of checkers that can beat or another function ???
-    console.log(i,j,color);
+    //console.log(i,j,color);
     //if(checkers1[i][j]==color || checkers1[i][j]==color*2){
     if(checkers1[i][j]==color){
         //left top -can beat
@@ -261,7 +274,7 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(i1-2) && checkers1.hasOwnProperty(i1-3)&&checkers1[i1-2].hasOwnProperty(j1-2)&&checkers1[i1-3].hasOwnProperty(j1-3)){
             if(checkers1[i1-1][j1-1]==(-1*color) || checkers1[i1-1][j1-1]==(-2*color)&&(checkers1[i1-2][j1-2]==(-1*color) || checkers1[i1-2][j1-2]==(-2*color)))break;
             if( (checkers1[i1-2][j1-2]==(-1*color) || checkers1[i1-2][j1-2]==(-2*color) ) && (checkers1[i1-3][j1-3]==null)){
-                console.log("to left top can beat");
+                //console.log("to left top can beat");
                 return new Array(i,j);
             }
 
@@ -272,7 +285,7 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(i2-2) && checkers1.hasOwnProperty(i2-3)&&checkers1[i2-2].hasOwnProperty(Number(j2)+2)&&checkers1[i2-3].hasOwnProperty(Number(j2)+3)){
             if(checkers1[i2-1][Number(j2)+1]==(-1*color) || checkers1[i2-1][Number(j2)+1]==(-2*color)&&(checkers1[i2-2][Number(j2)+2]==(-1*color) || checkers1[i2-2][Number(j2)+2]==(-2*color)))break;
             if( (checkers1[i2-2][Number(j2)+2]==(-1*color) || checkers1[i2-2][Number(j2)+2]==(-2*color) ) && (checkers1[i2-3][Number(j2)+3]==null)){
-                console.log("to right top can beat");
+                //console.log("to right top can beat");
                 return new Array(i,j);
             }
             i2-=1;
@@ -281,18 +294,18 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(Number(i3)+2) && checkers1.hasOwnProperty(Number(i3)+3)&&checkers1[Number(i3)+2].hasOwnProperty(Number(j3)-2)&&checkers1[Number(i3)+3].hasOwnProperty(Number(j3)-3)){
             if(checkers1[Number(i3)+1][Number(j3)-1]==(-1*color) || checkers1[Number(i3)+1][Number(j3)-1]==(-2*color)&&(checkers1[Number(i3)+2][Number(j3)-2]==(-1*color) || checkers1[Number(i3)+2][Number(j3)-2]==(-2*color)))break;
             if( (checkers1[Number(i3)+2][Number(j3)-2]==((-1)*color) || checkers1[Number(i3)+2][Number(j3)-2]==((-2)*color) ) && (checkers1[Number(i3)+3][Number(j3)-3]==null)){
-                console.log("to left bot can beat");
-                console.log(checkers1[Number(i3)+2][Number(j3)-2],checkers1[Number(i3)+3][Number(j3)-3],i3,j3);
+                //console.log("to left bot can beat");
+                //console.log(checkers1[Number(i3)+2][Number(j3)-2],checkers1[Number(i3)+3][Number(j3)-3],i3,j3);
                 return new Array(i,j);
             }
-            console.log(i3,j3);
+            //console.log(i3,j3);
             i3=Number(i3)+1;
             j3=Number(j3)-1;
         }
         while(checkers1.hasOwnProperty(Number(i4)+2) && checkers1.hasOwnProperty(Number(i4)+3)&&checkers1[Number(i4)+2].hasOwnProperty(Number(j4)+2)&&checkers1[Number(i4)+3].hasOwnProperty(Number(j4)+3)){
             if(checkers1[Number(i4)+1][Number(j4)+1]==(-1*color) || checkers1[Number(i4)+1][Number(j4)+1]==(-2*color)&&(checkers1[Number(i4)+2][Number(j4)+2]==(-1*color) || checkers1[Number(i4)+2][Number(j4)+2]==(-2*color)))break;
             if( (checkers1[Number(i4)+2][Number(j4)+2]==((-1)*color) || checkers1[Number(i4)+2][Number(j4)+2]==((-2)*color) ) && (checkers1[Number(i4)+3][Number(j4)+3]==null)){
-                console.log("to right bot can beat");
+                //console.log("to right bot can beat");
                 return new Array(i,j);
             }
             i4=Number(i4)+1;
@@ -306,7 +319,7 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(i1-1) && checkers1.hasOwnProperty(i1-2)&&checkers1[i1-1].hasOwnProperty(j1-1)&&checkers1[i1-2].hasOwnProperty(j1-2)){
             if((checkers1[i1-1][j1-1]==(-1*color) || checkers1[i1-1][j1-1]==(-2*color))&&(checkers1[i1-2][j1-2]==(-1*color) || checkers1[i1-2][j1-2]==(-2*color)))break;
             if( (checkers1[i1-1][j1-1]==(-1*color) || checkers1[i1-1][j1-1]==(-2*color) ) && (checkers1[i1-2][j1-2]==null)){
-                console.log("to left-top can beat");
+                //console.log("to left-top can beat");
                 return new Array(i,j);
             }
 
@@ -317,7 +330,7 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(i2-1) && checkers1.hasOwnProperty(i2-2)&&checkers1[i2-1].hasOwnProperty(Number(j2)+1)&&checkers1[i2-2].hasOwnProperty(Number(j2)+2)){
             if((checkers1[i2-1][Number(j2)+1]==(-1*color) || checkers1[i2-1][Number(j2)+1]==(-2*color))&&(checkers1[i2-2][Number(j2)+2]==(-1*color) || checkers1[i2-2][Number(j2)+2]==(-2*color)))break;
             if( (checkers1[i2-1][Number(j2)+1]==(-1*color) || checkers1[i2-1][Number(j2)+1]==(-2*color) ) && (checkers1[i2-2][Number(j2)+2]==null)){
-                console.log("to right-top can beat");
+                //console.log("to right-top can beat");
                 return new Array(i,j);
             }
             i2-=1;
@@ -326,18 +339,18 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
         while(checkers1.hasOwnProperty(Number(i3)+1) && checkers1.hasOwnProperty(Number(i3)+2)&&checkers1[Number(i3)+1].hasOwnProperty(Number(j3)-1)&&checkers1[Number(i3)+2].hasOwnProperty(Number(j3)-1)){
             if((checkers1[Number(i3)+1][Number(j3)-1]==(-1*color) || checkers1[Number(i3)+1][Number(j3)-1]==(-2*color))&&(checkers1[Number(i3)+2][Number(j3)-2]==(-1*color) || checkers1[Number(i3)+2][Number(j3)-2]==(-2*color)))break;
             if( (checkers1[Number(i3)+1][Number(j3)-1]==((-1)*color) || checkers1[Number(i3)+1][Number(j3)-1]==((-2)*color) ) && (checkers1[Number(i3)+2][Number(j3)-2]==null)){
-                console.log("to left-bottom can beat");
-                //console.log(checkers1[Number(i3)+2][Number(j3)-2],checkers1[Number(i3)+3][Number(j3)-3],i3,j3);
+                //console.log("to left-bottom can beat");
+                ////console.log(checkers1[Number(i3)+2][Number(j3)-2],checkers1[Number(i3)+3][Number(j3)-3],i3,j3);
                 return new Array(i,j);
             }
-            //console.log(i3,j3);
+            ////console.log(i3,j3);
             i3=Number(i3)+1;
             j3=Number(j3)-1;
         }
         while(checkers1.hasOwnProperty(Number(i4)+1) && checkers1.hasOwnProperty(Number(i4)+2)&&checkers1[Number(i4)+1].hasOwnProperty(Number(j4)+1)&&checkers1[Number(i4)+2].hasOwnProperty(Number(j4)+2)){
             if((checkers1[Number(i4)+1][Number(j4)+1]==(-1*color) || checkers1[Number(i4)+1][Number(j4)+1]==(-2*color))&&(checkers1[Number(i4)+2][Number(j4)+2]==(-1*color) || checkers1[Number(i4)+2][Number(j4)+2]==(-2*color)))break;
             if( (checkers1[Number(i4)+1][Number(j4)+1]==((-1)*color) || checkers1[Number(i4)+1][Number(j4)+1]==((-2)*color) ) && (checkers1[Number(i4)+2][Number(j4)+2]==null)){
-                console.log("to right-bottom can beat");
+                //console.log("to right-bottom can beat");
                 return new Array(i,j);
             }
             i4=Number(i4)+1;
@@ -348,16 +361,16 @@ function isCanBeat(i,j,color){ //must return array of checkers that can beat or 
 
 
 function dropChecker1(){
-    console.log("got in dropChecker1 function"); //
+    //console.log("got in dropChecker1 function"); //
     if(selectedChecker!=undefined){
         let cell=$(this);
         let myArr=cell.attr('id').split('-');
         let idRow=Number(myArr[1]);
         let idCol=Number(myArr[2]);
-        console.log(myArr,idRow,idCol)
+        //console.log(myArr,idRow,idCol)
         /*if(isCanBeat(CheckerInd1,CheckerInd2,1)){
             do{
-                //console.log(idRow,idCol,selectedChecker[0],selectedChecker[1]);
+                ////console.log(idRow,idCol,selectedChecker[0],selectedChecker[1]);
                 checkers1[idRow][idCol]=checkers1[(selectedChecker[0])][(selectedChecker[1])];
                 checkers1[selectedChecker[0]][selectedChecker[1]]=null;
                 checkers1[((Number(idRow)+Number(selectedChecker[0]))/2)][((Number(idCol)+Number(selectedChecker[1]))/2)]=null;
@@ -366,7 +379,7 @@ function dropChecker1(){
 
         if(isCanBeat(selectedChecker[0],selectedChecker[1],1)){
             //alert("while")
-            console.log(idRow,idCol,selectedChecker[0],selectedChecker[1]);
+            //console.log(idRow,idCol,selectedChecker[0],selectedChecker[1]);
             checkers1[idRow][idCol]=checkers1[(selectedChecker[0])][(selectedChecker[1])];
             checkers1[selectedChecker[0]][selectedChecker[1]]=null;
             checkers1[((Number(idRow)+Number(selectedChecker[0]))/2)][((Number(idCol)+Number(selectedChecker[1]))/2)]=null;
@@ -376,6 +389,10 @@ function dropChecker1(){
             //selectedChecker[0]=idRow
             //selectedChecker[1]=idCol
             //return
+            if(idRow==0){
+                checkers1[idRow][idCol]=2;
+                alert("white wins")
+            }
             renderCheckers1()
             if(!isCanBeat(idRow,idCol,1)){
 
@@ -394,7 +411,10 @@ function dropChecker1(){
         else {
             checkers1[idRow][idCol]=checkers1[(selectedChecker[0])][(selectedChecker[1])]
             checkers1[selectedChecker[0]][selectedChecker[1]]=null;
-
+            if(idRow==0){
+                checkers1[idRow][idCol]=2;
+                alert("white wins")
+            }
             //alert("pc turn2")
             pcTurn()
             //renderCheckers1()
@@ -411,7 +431,7 @@ async function pcTurn(){
         for(let j=0;j<8;++j){
             if(isCanBeat(i,j,-1)){
                 blackCheckerCanBeat.push(new Array(i,j))
-                console.log("black can jump");
+                //console.log("black can jump");
             }
         }
     }
@@ -422,7 +442,7 @@ async function pcTurn(){
         //alert(min+"  "+max)
         let blackChecker=blackCheckerCanBeat[Math.floor(Math.random() * blackCheckerCanBeat.length)];
         //alert("pc going...")
-        console.log(blackCheckerCanBeat.length,blackChecker[0],blackChecker[1])
+        //console.log(blackCheckerCanBeat.length,blackChecker[0],blackChecker[1])
         // to do Beat
         do{
 
@@ -449,12 +469,15 @@ async function pcTurn(){
             }
             let coords=tmpAr[Math.floor(Math.random() * tmpAr.length)]
             //beating:
-
             checkers1[coords[0]][coords[1]]=checkers1[blackChecker[0]][blackChecker[1]];
             checkers1[blackChecker[0]][blackChecker[1]]=null;
             checkers1[((Number(coords[0])+Number(blackChecker[0]))/2)][((Number(coords[1])+Number(blackChecker[1]))/2)]=null;
             blackChecker=new Array(coords[0],coords[1]);
-
+            if(coords[0]==7){
+                console.log(coords[0])
+                checkers1[coords[0]][coords[1]]=-2;
+                alert("black wins")
+            }
             renderCheckers1()
             await sleep(700);
         }while(isCanBeat(blackChecker[0],blackChecker[1],-1))
@@ -467,9 +490,9 @@ async function pcTurn(){
             let max = Math.floor(blackCheckersCanStep.length);
             let blackChecker=blackCheckersCanStep[Math.floor(Math.random() * blackCheckersCanStep.length)];
             //blackCheckerGo(blackChecker);
-            //for(let i=0;i<100;++i)console.log(blackCheckersCanStep[Math.floor(Math.random() * blackCheckersCanStep.length)])
+            //for(let i=0;i<100;++i)//console.log(blackCheckersCanStep[Math.floor(Math.random() * blackCheckersCanStep.length)])
             //alert(blackChecker+"black checker can step")
-            console.log(blackCheckersCanStep)
+            //console.log(blackCheckersCanStep)
             let tmpAr=[];
 
             //step left bottom
@@ -486,7 +509,11 @@ async function pcTurn(){
             checkers1[coords[0]][coords[1]]=checkers1[blackChecker[0]][blackChecker[1]];
             checkers1[blackChecker[0]][blackChecker[1]]=null;
             //blackChecker=new Array(coords[0],coords[1]);
-
+            if(coords[0]==7){
+                console.log(coords[0])
+                checkers1[coords[0]][coords[1]]=-2;
+                alert("black wins")
+            }
             renderCheckers1()
         }
     }
@@ -497,10 +524,10 @@ function isblackCheckerCanStep(){
         for(let j=0;j<8;j++){
             if(((Number(i)+j)%2)==1){
                 if(checkers1[i][j]==-1){
-                    console.log("**************** blackCheckerCanStep")
+                    //console.log("**************** blackCheckerCanStep")
                     if((checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)-1) && checkers1[Number(i)+1][Number(j-1)]==null)||
                         (checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)+1)&&checkers1[Number(i)+1][Number(j+1)]==null)){
-                        console.log("======================")
+                        //console.log("======================")
                         blackCheckersCanStep.push(new Array(i,j))
                     }
 
