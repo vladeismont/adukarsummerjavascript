@@ -220,27 +220,38 @@ function selectChecker1(){
     let tmp=$(this);
     CheckerInd1=tmp.attr("i");
     CheckerInd2=tmp.attr("j");
-    selectedChecker=[CheckerInd1,CheckerInd2];
-    //console.log(CheckerInd1,CheckerInd2)
 
+    console.log(CheckerInd1,CheckerInd2)
+    console.log(iswhiteCheckerCanStep(CheckerInd1,CheckerInd2) , !(whiteCheckerCanBeat.length>0))
+    //iswhiteCheckerCanStep()
     ////console.log(whiteCheckerCanBeat);
     ////console.log((whiteCheckerCanBeat.some))
     if(tmp.hasClass("white-checker") && (whiteCheckerCanBeat.length>0)&&(isCanBeat(CheckerInd1,CheckerInd2,1))){
+        console.log('must beat')
+        selectedChecker=[CheckerInd1,CheckerInd2];
         $(`.selected`).removeClass("selected");
         $(`.canDropChecker`).removeClass("canDropChecker");
         tmp.addClass("selected");
-        if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
+        /*if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
             //console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
-        }
+        }*/
     }
-    else if(tmp.hasClass("white-checker")&& (!(whiteCheckerCanBeat.length>0))){
+    else if(tmp.hasClass("white-checker")&& !(whiteCheckerCanBeat.length>0) && !(isCanBeat(CheckerInd1,CheckerInd2,1)) && iswhiteCheckerCanStep(CheckerInd1,CheckerInd2)){
+        console.log("must step")
+        selectedChecker=[CheckerInd1,CheckerInd2];
         $(`.selected`).removeClass("selected");
         $(`.canDropChecker`).removeClass("canDropChecker");
         tmp.addClass("selected");
-        if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
+        /*if(isCanBeat(CheckerInd1,CheckerInd2,1)){ //is checker in battle, 1=white checker ,-1=black checker
             //console.log("can beat",isCanBeat(CheckerInd1,CheckerInd2,1));
-        }
+        }*/
 
+    }
+    else if(tmp.hasClass("white-checker") && iswhiteCheckerCanStep(CheckerInd1,CheckerInd2) && !(whiteCheckerCanBeat.length>0)){
+        selectedChecker=[CheckerInd1,CheckerInd2];
+        $(`.selected`).removeClass("selected");
+        $(`.canDropChecker`).removeClass("canDropChecker");
+        tmp.addClass("selected");
     }
     return;
 }
@@ -563,8 +574,8 @@ function isblackCheckerCanStep(){
             if(((Number(i)+j)%2)==1){
                 if(checkers1[i][j]==-1){
                     //console.log("**************** blackCheckerCanStep")
-                    if((checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)-1) && checkers1[Number(i)+1][Number(j-1)]==null)||
-                        (checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)+1)&&checkers1[Number(i)+1][Number(j+1)]==null)){
+                    if((checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)-1) && checkers1[Number(i)+1][Number(j)-1]==null)||
+                        (checkers1.hasOwnProperty(Number(i)+1)&&checkers1[Number(i)+1].hasOwnProperty(Number(j)+1)&&checkers1[Number(i)+1][Number(j)+1]==null)){
                         //console.log("======================")
                         blackCheckersCanStep.push(new Array(i,j))
                     }
@@ -577,4 +588,20 @@ function isblackCheckerCanStep(){
     }
     if(blackCheckersCanStep.length>0)return true
     else return false;
+}
+
+function iswhiteCheckerCanStep(i,j){
+    let x=i
+    let y=j
+    console.log(((checkers1.hasOwnProperty(Number(i)-1) && checkers1[Number(i)-1].hasOwnProperty(Number(j)-1)) && checkers1[Number(i)-1][Number(j)-1]==null),
+        ((checkers1.hasOwnProperty(Number(i)-1) && checkers1[Number(i)-1].hasOwnProperty(Number(j)+1)) && checkers1[Number(i)-1][Number(j)+1]==null))
+    if(((checkers1.hasOwnProperty(Number(i)-1) && checkers1[Number(i)-1].hasOwnProperty(Number(j)-1)) && checkers1[Number(i)-1][Number(j)-1]==null)||
+        ((checkers1.hasOwnProperty(Number(i)-1) && checkers1[Number(i)-1].hasOwnProperty(Number(j)+1)) && checkers1[Number(i)-1][Number(j)+1]==null)){
+        console.log("is white checker can step - true")
+        return true
+    }
+    else{
+        console.log("is white checker can step - false")
+        return false;
+    }
 }
